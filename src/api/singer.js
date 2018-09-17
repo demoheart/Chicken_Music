@@ -35,9 +35,10 @@ export function getSingerDetail (singerId) {
       platform: 'yqq',
       order: 'listen',
       begin: 0,
-      num: 80,
+      num: 100,
       songstatus: 1,
-      singermind: singerId
+      g_tk: 1664029744,
+      singermid: singerId
     })
 
   return jsonp(url, data, options)
