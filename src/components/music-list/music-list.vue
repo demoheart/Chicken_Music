@@ -55,7 +55,7 @@ export default {
     },
     songs: {
       type: Array,
-      default: null
+      default: () => [] // 为空数组时，需要写成函数形式
     }
 
   },
