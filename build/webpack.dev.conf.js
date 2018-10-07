@@ -10,11 +10,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 // 配置代理开始
-// const axios = require('axios')
-// const express = require('express')
-// const app = express()
-// const apiRoutes = express.Router()
-// app.use('/api', apiRoutes)
+const axios = require('axios')
+const express = require('express')
+const app = express()
+const apiRoutes = express.Router()
+app.use('/api', apiRoutes)
 // 配置代理结束
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -29,22 +29,22 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // these devServer options should be customized in /config/index.js
   devServer: {
     // 配置代理开始
-    // before (app) {
-    //   app.get('/api/getDiscList', (req, res) => {
-    //     var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
-    //     axios.get(url, {
-    //       headers: {
-    //         referer: 'https://c.y.qq.com/',
-    //         host: 'c.y.qq.com'
-    //       },
-    //       params: req.query
-    //     }).then((response) => {
-    //       res.json(response.data)
-    //     }).catch((e) => {
-    //       console.log(e)
-    //     })
-    //   })
-    // },
+    before (app) {
+      app.get('/api/getSongList', (req, res) => {
+        var url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'
+        axios.get(url, {
+          headers: {
+            referer: 'https://c.y.qq.com/',
+            host: 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          res.json(response.data)
+        }).catch((e) => {
+          console.log(e)
+        })
+      })
+    },
     // 配置代理结束
     clientLogLevel: 'warning',
     historyApiFallback: {
