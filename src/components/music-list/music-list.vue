@@ -17,7 +17,7 @@
     <div class="bg-layer" ref="layer"></div>
     <scroll :data="songs" :listen-scroll="listenScroll" :probe-type="probeType" @scroll="scroll" class="list" ref="list">
       <div class="song-list-wrapper">
-        <song-list :songs="songs" @select="selectItem"></song-list>
+        <song-list :rank="rank" :songs="songs" @select="selectItem"></song-list>
       </div>
       <div v-show="!songs.length" class="loading-container">
         <loading></loading>
@@ -56,6 +56,10 @@ export default {
     songs: {
       type: Array,
       default: () => [] // 为空数组时，需要写成函数形式
+    },
+    rank: {
+      type: Boolean,
+      default: false
     }
 
   },

@@ -13,6 +13,7 @@ import 'common/stylus/index.styl'
 // 减少手机点击 300 毫秒的延时
 fastclick.attach(document.body)
 
+// 图片懒加载
 Vue.use(VueLazyLoad, {
   loading: require('common/image/default.png')
 })
